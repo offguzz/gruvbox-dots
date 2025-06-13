@@ -183,6 +183,31 @@ vim.o.smartcase = true
 vim.o.showmode = true
 
 -- Keymaps
+
+-- Emacs Keybinds in Insert Mode
+-- set this better
+vim.keymap.set({ "i", "c" }, "<C-p>", "<Up>", { silent = true })
+vim.keymap.set({ "i", "c" }, "<C-n>", "<Down>", { silent = true })
+vim.keymap.set({ "i", "c" }, "<C-a>", "<Home>", { silent = true })
+vim.keymap.set({ "i", "c" }, "<C-f>", "<Right>", { silent = true })
+vim.keymap.set({ "i", "c" }, "<C-b>", "<Left>", { silent = true })
+vim.keymap.set({ "i", "c" }, "<C-e>", "<End>", { silent = true })
+vim.keymap.set({ "i", "c" }, "<A-b>", "<C-Left>", { silent = true })
+vim.keymap.set({ "i", "c" }, "<A-f>", "<C-Right>", { silent = true })
+vim.keymap.set({ "i", "c" }, "<A-d>", "<C-o>dw", { silent = true })
+vim.keymap.set({ "i", "c" }, "<C-d>", "<C-o>dl", { silent = true })
+vim.keymap.set({ "i", "c" }, "<C-k>", "<Esc>lDa", { silent = true })
+vim.keymap.set({ "i", "c" }, "<C-u>", "<Esc>d0xi", { silent = true })
+vim.keymap.set("i", "<A-}>", "<C-o>}", { silent = true })
+vim.keymap.set("i", "<A-{>", "<C-o>{", { silent = true })
+vim.keymap.set("i", "<A-<>", "<C-o>gg", { silent = true })
+vim.keymap.set("i", "<A->>", "<C-o>G", { silent = true })
+-- vim.keymap.set("i", "<C-x><C-s>", "<Esc>:w<CR>a", { silent = true })
+
+-- Normal mode in command line
+vim.keymap.set("c", "<C-o>", "<C-f>", { silent = true })
+
+-- Better Window Mangement
 vim.keymap.set("n", "<leader>w", "<C-w>")
 
 vim.keymap.set("v", "<S-k>", ":m '<-2<CR>gv=gv", { silent = true, desc = "Move Line Up" })
