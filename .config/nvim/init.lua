@@ -242,7 +242,7 @@ end, { desc = "Open diagnostic [Q]uickfix list" })
 -- is not what someone will guess without a bit more experience.
 --
 -- or just use <C-\><C-n> to exit terminal mode
--- vim.keymap.set("t", "<Esc><Esc>", "<C-\\><C-n>", { desc = "Exit terminal mode" })
+vim.keymap.set("t", "<Esc><Esc>", "<C-\\><C-n>", { desc = "Exit terminal mode" })
 -- Double Control-c to Escape terminal mode
 -- vim.keymap.set('t', '<C-c><C-c>', '<C-\\><C-n>', { desc = 'Exit terminal mode' })
 
@@ -1534,15 +1534,7 @@ require("lazy").setup(
 				{
           "<c-/>",
 					function()
-						Snacks.terminal("tmux")
-					end,
-					desc = "Toggle Terminal",
-					mode = { "n", "t" },
-				},
-				{
-          "<a-/>",
-					function()
-						Snacks.terminal("tmux")
+						Snacks.terminal()
 					end,
 					desc = "Toggle Terminal",
 					mode = { "n", "t" },
@@ -1618,6 +1610,43 @@ require("lazy").setup(
 		{
 			"ellisonleao/gruvbox.nvim",
 		},
+
+    -- better term
+    {
+  "CRAG666/betterTerm.nvim",
+  opts = {
+  prefix = "Term_",
+  position = "bot",
+  size = 18,
+  startInserted = true,
+  show_tabs = true,
+  new_tab_mapping = "<A-n>",       -- Create new terminal
+  jump_tab_mapping = "<A-$tab>",   -- Jump to tab terminal
+  active_tab_hl = "TabLineSel",    -- Highlight group for active tab
+  inactive_tab_hl = "TabLine",     -- Highlight group for inactive tabs
+  new_tab_hl = "BetterTermSymbol", -- Highlight group for new term
+  new_tab_icon = "+",              -- Icon for new term
+  index_base = 1                   -- Index number for terminals 
+}, 
+keys = {
+    {
+      mode = { 'n', 't' },
+      '<A-/>',
+      function()
+        require('betterTerm').open()
+      end,
+      desc = 'Open BetterTerm 0',
+    },
+    {
+      '<leader>tt',
+      function()
+        require('betterTerm').select()
+      end,
+      desc = 'Select terminal',
+    }
+  },
+
+  },
 
 		--  Harpoon
 		{
