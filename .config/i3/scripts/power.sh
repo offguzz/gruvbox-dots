@@ -1,5 +1,5 @@
 #!/bin/bash
-chosen=$(echo -e "Poweroff\nReboot\nSuspend\nLog out\nPower Profile" | rofi -d -p "Power Management:")
+chosen=$(echo -e "Poweroff\nReboot\nSuspend\nLog out\nPower Profile" | rofi -d -theme ~/.config/i3/rofi/config.rasi -p "Power Management:")
 case "$chosen" in
 "Poweroff")
   systemctl poweroff
@@ -17,7 +17,7 @@ case "$chosen" in
   hyprctl dispatch exit
   ;;
 "Power Profile")
-  chosen2=$(echo -e "Power Saver\nBalanced\nPerformance" | rofi -d -p "Power Profile ($(powerprofilesctl get)):")
+  chosen2=$(echo -e "Power Saver\nBalanced\nPerformance" | rofi -d -theme ~/.config/i3/rofi/config.rasi -p "Power Profile ($(powerprofilesctl get)):")
   case "$chosen2" in
   "Power Saver")
     powerprofilesctl set power-saver
