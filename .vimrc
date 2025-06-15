@@ -29,7 +29,7 @@ set undofile
 set undolevels=10000
 set clipboard+=unnamed,unnamedplus
 
-let mapleader="\ "  
+let mapleader="\ " 
 
 " Netrw Config
 let g:netrw_banner = 0
@@ -134,7 +134,7 @@ cnoremap <C-f> <Right>
 cnoremap <C-a> <Home>
 cnoremap <C-e> <End>
 cnoremap <C-d> <Delete>
- cnoremap <C-o> <C-f>
+cnoremap <C-o> <C-f>
  
 " Theme Settings
 set termguicolors
