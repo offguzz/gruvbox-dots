@@ -29,11 +29,13 @@ set undofile
 set undolevels=10000
 set clipboard+=unnamed,unnamedplus
 
-let mapleader="\ " 
-
 " Netrw Config
 let g:netrw_banner = 0
 let g:netrw_liststyle = 0
+
+let mapleader="\ " 
+
+nmap Q <nop>
 
 " Better Marks
 nmap <leader>1 `1
@@ -59,19 +61,22 @@ nmap <leader>tn :term<Cr><C-w>j:close<Cr>i
 tmap <Esc><Esc> <C-\><C-n>
 
 " Grep
-nmap <leader>sg :grep -R  .<Left><Left>
-nmap <leader>sG :grep
+nmap <leader>/ :grep -R  .<Left><Left>
+nmap <leader>? :grep 
 
-"Buffers 
+" QuickFix List
+nmap [q :cprev<Cr>
+nmap ]q :cnext<Cr>
+nmap [Q :cfirst<Cr>
+nmap ]Q :clast<Cr>
+
+" Buffers 
 nmap [b :bp!<Cr>
 nmap ]b :bn!<Cr>
 nmap <leader>, :ls<Cr> :b! 
 
 " Vim File Explorer
 nmap <leader><Cr> :Ex<Cr>
-
-" Command Line in Vi-Mode
-nmap <leader>; :<C-f>
 
 " Text Managment
 vmap <S-k> :m '<-2<CR>gv=gv
@@ -110,16 +115,16 @@ imap <M-char-98> <C-Left>
 " M-d
 execute "set <M-char-100>=\ed"
 imap <M-char-100> <C-o>dw
-" M-< → Vai para o início do arquivo
+" M-<
 execute "set <M-char-60>=\e<"
 imap <M-char-60> <C-o>gg
-" M-> → Vai para o final do arquivo
+" M->
 execute "set <M-char-62>=\e>"
 imap <M-char-62> <C-o>G
-" M-} → Pular para a próxima chave }
+" M-} 
 execute "set <M-char-125>=\e}"
 imap <M-char-125> <C-o>}
-" M-{ → Pular para a chave anterior {
+" M-{
 execute "set <M-char-123>=\e{"
 imap <M-char-123> <C-o>{
 " Undo
@@ -143,3 +148,22 @@ colorscheme retrobox
 
 " Turn Off Syntax
 " syntax off
+
+" POST: https://www.reddit.com/r/vim/comments/orfpbd/interactive_fuzzy_finder_in_vim_without_plugins/
+function! FZF() abort
+    let l:tempname = tempname()
+    " fzf | awk '{ print $1":1:0" }' > file
+    execute 'silent !fzf --style minimal --no-border --margin 5 --preview "if [ -d {} ]; then tree {}; else cat {}; fi" --multi ' . '| awk ''{ print $1":1:0" }'' > ' . fnameescape(l:tempname)
+    try
+        execute 'cfile ' . l:tempname
+        redraw!
+    finally
+        call delete(l:tempname)
+    endtry
+endfunction
+
+" :Files
+command! -nargs=* Files call FZF()
+
+" \ff
+nnoremap <leader><space> :Files<cr>
