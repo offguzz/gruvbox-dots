@@ -31,11 +31,6 @@ set clipboard+=unnamed,unnamedplus
 
 let mapleader="\ "  
 
-" " Set cursor to line in insert mode
-" let &t_SI = "\e[5 q"
-" " Set cursor to block in normal mode
-" let &t_EI = "\e[2 q"
-
 " Netrw Config
 let g:netrw_banner = 0
 let g:netrw_liststyle = 0
