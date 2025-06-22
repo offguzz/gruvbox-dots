@@ -35,6 +35,8 @@ cnoremap <C-o> <C-f>
 nmap <space>t :term<Cr>i
 nmap <Esc> :nohl<Cr>
 tmap <Esc><Esc> <C-\><C-n>
+nmap <space>q :copen<Cr>
+nmap <space>Q :cclose<Cr>
 nmap [q :cprev<Cr>
 nmap ]q :cnext<Cr>
 nmap [Q :cfirst<Cr>
@@ -150,31 +152,3 @@ end
 vim.keymap.set("n", "<space><space>", FzfLike, { desc = "Fuzzy Find (Quickfix)" })
 
 
-function ToggleQuickfix()
-  local current_win = vim.api.nvim_get_current_win()
-  local quickfix_win = nil
-
-  -- Verifica todas as janelas abertas
-  for _, win in ipairs(vim.fn.getwininfo()) do
-    if win.quickfix == 1 then
-      quickfix_win = win.winid
-      break
-    end
-  end
-
-  if quickfix_win then
-    if current_win == quickfix_win then
-      -- Se já está na janela do quickfix, fecha
-      vim.cmd("cclose")
-    else
-      -- Se quickfix está aberto mas o foco está em outra janela, move o foco para o quickfix
-      vim.api.nvim_set_current_win(quickfix_win)
-    end
-  else
-    -- Quickfix não está aberto, então abre
-    vim.cmd("copen")
-  end
-end
-
--- Mapeamento para <space>q
-vim.keymap.set("n", "<space>q", ToggleQuickfix, { desc = "Toggle & Focus Quickfix" })
