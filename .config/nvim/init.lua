@@ -8,6 +8,8 @@ vim.g.netrw_liststyle = 0
 vim.cmd('colorscheme retrobox')
 
 vim.cmd([[
+nmap <C-c> <Esc>
+vmap <C-c> <Esc>
 nmap <space>w <C-w>
 nmap <space>g :!git add . && git commit -m "commit" && git push<CR>
 nmap <space><Cr> :Ex<Cr> 

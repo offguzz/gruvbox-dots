@@ -1,5 +1,9 @@
 #!/usr/bin/env python3
+#
+# vim: set et ts=4 sw=4 :
+#
 # encoding:utf8
+#
 """NetworkManager command line dmenu script.
 
 To add new connections or enable/disable networking requires policykit
@@ -82,7 +86,7 @@ def dmenu_pass(command, color):
     return ["-P"] if dm_patch else ["-nb", color, "-nf", color]
 
 
-def dmenu_cmd(num_lines, prompt="Networks", active_lines=None):
+def dmenu_cmd(num_lines, prompt="Network:", active_lines=None):
     """Parse config.ini for menu options
 
     Args: args - num_lines: number of lines to display
@@ -351,8 +355,8 @@ def process_ap(nm_ap, is_active, adapter):
         LOOP.run()
     else:
         conns_cur = [i for i in CONNS if
-            i.get_setting_wireless() is not None and
-            conn_matches_adapter(i, adapter)]
+                     i.get_setting_wireless() is not None and
+                     conn_matches_adapter(i, adapter)]
         con = nm_ap.filter_connections(conns_cur)
         if len(con) > 1:
             raise ValueError("There are multiple connections possible")
@@ -495,8 +499,8 @@ def create_gsm_actions(gsms, active):
     """Create the list of strings to display with associated function
     (activate/deactivate) GSM connections."""
     active_gsms = [i for i in active if
-        i.get_connection() is not None and
-        i.get_connection().is_type(NM.SETTING_GSM_SETTING_NAME)]
+                   i.get_connection() is not None and
+                   i.get_connection().is_type(NM.SETTING_GSM_SETTING_NAME)]
     return _create_vpngsm_actions(gsms, active_gsms, "GSM")
 
 
@@ -504,8 +508,8 @@ def create_blue_actions(blues, active):
     """Create the list of strings to display with associated function
     (activate/deactivate) Bluetooth connections."""
     active_blues = [i for i in active if
-        i.get_connection() is not None and
-        i.get_connection().is_type(NM.SETTING_BLUETOOTH_SETTING_NAME)]
+                    i.get_connection() is not None and
+                    i.get_connection().is_type(NM.SETTING_BLUETOOTH_SETTING_NAME)]
     return _create_vpngsm_actions(blues, active_blues, "Bluetooth")
 
 
@@ -525,7 +529,7 @@ def _create_vpngsm_actions(cons, active_cons, label):
         action_name = f"{con.get_id()}:{label}"
         if is_active:
             active_connection = [a for a in active_cons
-                if a.get_id() == con.get_id()]
+                                 if a.get_id() == con.get_id()]
             if len(active_connection) != 1:
                 raise ValueError(f"Multiple active connections match {con.get_id()}")
             active_connection = active_connection[0]
@@ -603,12 +607,12 @@ def get_selection(all_actions):
         inp = [str(action) for action in all_actions]
     elif highlight is True and cmd_base == "wofi":
         inp = [get_wofi_highlight_markup(action) if action.is_active else str(action)
-            for action in all_actions]
+               for action in all_actions]
     else:
         inp = [(active_chars if action.is_active else " " * len(active_chars)) + " " + str(action)
-            for action in all_actions]
+               for action in all_actions]
     active_lines = [index for index, action in enumerate(all_actions)
-        if action.is_active]
+                    if action.is_active]
 
     command = dmenu_cmd(len(inp), active_lines=active_lines)
     sel = subprocess.run(command,
@@ -625,14 +629,14 @@ def get_selection(all_actions):
         action = [i for i in all_actions if str(i).strip() == sel.strip()]
     elif highlight is True and cmd_base == "wofi":
         action = [i for i in all_actions
-            if str(i).strip() == sel.strip() or
-            get_wofi_highlight_markup(i) == sel.strip()]
+                  if str(i).strip() == sel.strip() or
+                     get_wofi_highlight_markup(i) == sel.strip()]
     else:
         action = [i for i in all_actions
-            if ((str(i).strip() == str(sel.strip())
-                 and not i.is_active) or
-                (active_chars + " " + str(i) == str(sel.rstrip('\n'))
-                 and i.is_active))]
+                  if ((str(i).strip() == str(sel.strip())
+                       and not i.is_active) or
+                      (active_chars + " " + str(i) == str(sel.rstrip('\n'))
+                       and i.is_active))]
     if len(action) != 1:
         raise ValueError(f"Selection was ambiguous: '{str(sel.strip())}'")
     return action[0]
@@ -928,19 +932,19 @@ def create_ap_list(adapter, active_connections):
     aps_all = sorted(adapter.get_access_points(),
                      key=lambda a: a.get_strength(), reverse=True)
     conns_cur = [i for i in CONNS if
-        i.get_setting_wireless() is not None and
-        conn_matches_adapter(i, adapter)]
+                 i.get_setting_wireless() is not None and
+                 conn_matches_adapter(i, adapter)]
     try:
         ap_conns = active_ap.filter_connections(conns_cur)
         active_ap_name = ssid_to_utf8(active_ap)
         active_ap_con = [active_conn for active_conn in active_connections
-            if active_conn.get_connection() in ap_conns]
+                         if active_conn.get_connection() in ap_conns]
     except AttributeError:
         active_ap_name = None
         active_ap_con = []
     if len(active_ap_con) > 1:
         raise ValueError("Multiple connection profiles match"
-            " the wireless AP")
+                         " the wireless AP")
     active_ap_con = active_ap_con[0] if active_ap_con else None
     for nm_ap in aps_all:
         ap_name = ssid_to_utf8(nm_ap)
@@ -1035,4 +1039,3 @@ def main():
 if __name__ == '__main__':
     main()
 
-# vim: set et ts=4 sw=4 :

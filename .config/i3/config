@@ -5,9 +5,10 @@
 set $super Mod4
 set $alt Mod1
 
-set $scripts ~/.config/i3/scripts
 
 set $terminal kitty
+
+set $kitty  kitty --title "run-fzf" -e 
 
 # # Minimal Theme
 # set $fg #ffffff
@@ -88,23 +89,18 @@ bindsym $super+Return exec $terminal
 bindsym $super+q kill
 
 # run rofi (a program launcher)
-bindsym $super+slash exec --no-startup-id $scripts/launcher.sh
-
-# run rofi window 
-bindsym $super+w exec --no-startup-id $scripts/windows.sh
+bindsym $super+slash exec --no-startup-id $kitty ~/.config/i3/scripts/fzf_rofi.sh
 
 # run rofi network script
-bindsym $super+n exec --no-startup-id  $scripts/network.py
+bindsym $super+n exec --no-startup-id  $kitty ~/.config/i3/scripts/fzf-network.py
 
 # run rofi bluetooth script
-bindsym $super+b exec --no-startup-id  $scripts/bluetooth.py
-
+bindsym $super+b exec --no-startup-id  $kitty ~/.config/i3/scripts/fzf-bluetooth.sh
 # run rofi output script
-bindsym $super+v exec --no-startup-id  $scripts/output.sh
+bindsym $super+v exec --no-startup-id  $kitty ~/.config/i3/scripts/fzf-sound.sh
 
 # run rofi monitors script
-bindsym $super+Shift+m exec --no-startup-id  $scripts/monitors.sh
-
+bindsym $super+Shift+m exec --no-startup-id  $kitty ~/.config/i3/scripts/fzf-xrandr-monitor.sh
 
 
 # alacritty floating
@@ -179,23 +175,25 @@ bindsym $super+Shift+r restart
 # exit i3 (logs you out of your X session)
 bindsym $super+Shift+q exec i3-msg exit
 
-bar {
-  status_command i3status -c ~/.config/i3/i3status/status
-    position top
-    font pango:Jetbrains Mono Nerd Font 8
-    tray_output none
-    colors {
-      background #31302E
-        statusline $fg
-        separator $bg
-#       element            border  bg    fg
-        focused_workspace  $blue   $blue $bg
-        active_workspace   $bg     $bg   $fg
-        inactive_workspace $bg     $bg   $fg
-        urgent_workspace   $red    $red  $bg
-        binding_mode       $bg     $bg   $fg
-    }
-}
+for_window [title="^run-fzf"] floating enable, resize set 800 400, move position center
+
+# bar {
+#   status_command i3status -c ~/.config/i3/i3status/status
+#     position top
+#     font pango:Jetbrains Mono Nerd Font 8
+#     tray_output none
+#     colors {
+#       background #31302E
+#         statusline $fg
+#         separator $bg
+# #       element            border  bg    fg
+#         focused_workspace  $blue   $blue $bg
+#         active_workspace   $bg     $bg   $fg
+#         inactive_workspace $bg     $bg   $fg
+#         urgent_workspace   $red    $red  $bg
+#         binding_mode       $bg     $bg   $fg
+#     }
+# }
 
 # Sway Config
 
