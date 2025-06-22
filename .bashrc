@@ -6,4 +6,6 @@ PS1='[\u@\h \W]\$ '
 
 export PATH="$HOME/scripts:$PATH"
 
-export EDITOR=vim
+export EDITOR=nvim
+
+alias vim=nvim
