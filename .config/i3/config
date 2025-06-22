@@ -1,10 +1,5 @@
-# Please see https://i3wm.org/docs/userguide.html for a complete reference!
-
-# VARIABLES
-
 set $super Mod4
 set $alt Mod1
-
 
 set $terminal kitty
 set $browser firefox
