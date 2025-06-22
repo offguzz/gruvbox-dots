@@ -13,6 +13,7 @@ vmap <C-c> <Esc>
 nmap <space>w <C-w>
 nmap <space>g :!git add . && git commit -m "commit" && git push<CR>
 nmap <space><Cr> :Ex<Cr> 
+nmap <space>, :ls<Cr>:b! 
 nmap <space>1 `1
 nmap <space>2 `2
 nmap <space>3 `3

@@ -7,7 +7,7 @@ set $alt Mod1
 
 
 set $terminal kitty
-
+set $browser firefox
 set $kitty  kitty --title "run-fzf" -e 
 
 # # Minimal Theme
@@ -85,11 +85,13 @@ floating_modifier $super
 # run a terminal
 bindsym $super+Return exec $terminal
 
+bindsym $super+w exec $browser
+
 # kill focused window
 bindsym $super+q kill
 
 # run rofi (a program launcher)
-bindsym $super+slash exec --no-startup-id $kitty ~/.config/i3/scripts/fzf_rofi.sh
+bindsym $super+slash exec --no-startup-id $kitty ~/.config/i3/scripts/fzf-run.sh
 
 # run rofi network script
 bindsym $super+n exec --no-startup-id  $kitty ~/.config/i3/scripts/fzf-network.py
