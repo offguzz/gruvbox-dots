@@ -1,6 +1,12 @@
 #!/bin/bash
 
-CHOICE=$(echo -e "Poweroff\nReboot\nSuspend\nLog out\nPower Profile" | fzf --no-multi --no-preview --header "Power Management:")
+# Obtém a porcentagem da bateria (ajuste para seu sistema se necessário)
+BATTERY_LEVEL=$(upower -i $(upower -e | grep BAT) | awk '/percentage/ {print $2}')
+
+# Usa o nível da bateria no header do fzf
+CHOICE=$(echo -e "Poweroff\nReboot\nSuspend\nLog out\nPower Profile" | \
+fzf --no-multi --no-preview --header "Power Management – Battery: $BATTERY_LEVEL")
+
 case "$CHOICE" in
 "Poweroff")
   systemctl poweroff

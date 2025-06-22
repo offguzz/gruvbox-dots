@@ -90,17 +90,18 @@ bindsym $super+w exec $browser
 # kill focused window
 bindsym $super+q kill
 
-# run rofi (a program launcher)
+# run a program launcher
 bindsym $super+slash exec --no-startup-id $kitty ~/.config/i3/scripts/fzf-run.sh
 
-# run rofi network script
+# run network script
 bindsym $super+n exec --no-startup-id  $kitty ~/.config/i3/scripts/fzf-network.py
 
-# run rofi bluetooth script
+# run bluetooth script
 bindsym $super+b exec --no-startup-id  $kitty ~/.config/i3/scripts/fzf-bluetooth.sh
-# run rofi output script
+# run output script
 bindsym $super+v exec --no-startup-id  $kitty ~/.config/i3/scripts/fzf-sound.sh
-
+# run powerscript
+bindsym $super+x exec --no-startup-id  $kitty ~/.config/i3/scripts/fzf-power.sh
 # run rofi monitors script
 bindsym $super+Shift+m exec --no-startup-id  $kitty ~/.config/i3/scripts/fzf-xrandr-monitor.sh
 
