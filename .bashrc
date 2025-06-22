@@ -9,5 +9,3 @@ export PATH="$HOME/scripts:$PATH"
 export EDITOR=nvim
 
 alias vim=nvim
-
-alias :d='git add . && git commit -m "commit" && git push'
