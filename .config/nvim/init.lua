@@ -73,28 +73,6 @@ imap <M-char-123> <C-o>{
 imap <C-/> <C-o>u
 ]])
 
-local function FZFSelectFile()
-  local handle = io.popen("find . -type f | fzf --preview 'cat {}'")
-  if not handle then
-    vim.notify("Erro ao executar fzf", vim.log.levels.ERROR)
-    return
-  end
-
-  local result = handle:read("*a")
-  handle:close()
-
-  result = result:gsub("%s+$", "")
-
-  if result ~= "" then
-    vim.cmd("edit " .. vim.fn.fnameescape(result))
-  end
-end
-
-vim.api.nvim_create_user_command("FZFOpen", FZFSelectFile, {})
-
-vim.keymap.set("n", "<space><space>", ":FZFOpen<CR>", { noremap = true, silent = true })
-
-
 local function GrepSearch()
   local input = vim.fn.input("Grep for > ")
   if input == "" then
@@ -115,3 +93,84 @@ vim.api.nvim_create_user_command("Grep", GrepSearch, {})
 
 vim.keymap.set("n", "<space>/", ":Grep<CR>", { noremap = true, silent = true })
 
+
+function FzfLike()
+  -- 1. Coletar arquivos
+  local handle = io.popen("find . -type f -not -path '*/.git/*'")
+  if not handle then
+    vim.notify("Erro ao executar 'find'", vim.log.levels.ERROR)
+    return
+  end
+
+  local files = {}
+  for file in handle:lines() do
+    table.insert(files, file)
+  end
+  handle:close()
+
+  -- 2. Entrada para filtro
+  vim.ui.input({ prompt = "Find for > " }, function(input)
+    if not input then return end
+    input = input:lower()
+
+    local filtered = {}
+    for _, file in ipairs(files) do
+      if file:lower():find(input, 1, true) then
+        table.insert(filtered, file)
+      end
+    end
+
+    local count = #filtered
+
+    if count == 0 then
+      vim.notify("No File Found.", vim.log.levels.INFO)
+      return
+    end
+
+    -- 3. Adicionar ao quickfix list
+    local qf_entries = {}
+    for _, file in ipairs(filtered) do
+      table.insert(qf_entries, { filename = file, lnum = 1, col = 1, text = file })
+    end
+    vim.fn.setqflist({}, ' ', {
+      title = 'FzfLike Results',
+      items = qf_entries,
+    })
+
+
+    -- 4. Abrir automaticamente se só tiver um arquivo
+    if count == 1 then
+      vim.cmd("edit " .. filtered[1])
+      return
+    end
+
+    -- 5. Mostrar opções resumidas na notificação
+    local max = 10
+    local output = {}
+    for i = 1, math.min(count, max) do
+      table.insert(output, string.format("%d. %s", i, filtered[i]))
+    end
+    if count > max then
+      table.insert(output, string.format("... and more %d files", count - max))
+    end
+    vim.notify(table.concat(output, "\n"), vim.log.levels.INFO)
+
+    -- 6. Escolher número do arquivo para abrir
+    vim.defer_fn(function()
+      vim.ui.input({ prompt = "Open (1-" .. math.min(count, max) .. "): " }, function(choice)
+        local index = tonumber(choice)
+        if index and filtered[index] then
+          vim.cmd("edit " .. filtered[index])
+        else
+          vim.notify("Invalid number.", vim.log.levels.WARN)
+        end
+      end)
+    end, 100)
+  end)
+
+    -- -- Abrir quickfix automaticamente (opcional)
+    -- vim.cmd("copen")
+end
+
+-- Atalho para usar a função
+vim.keymap.set("n", "<space><space>", FzfLike, { desc = "Fuzzy Find (Quickfix)" })
