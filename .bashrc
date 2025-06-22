@@ -10,4 +10,4 @@ export EDITOR=nvim
 
 alias vim=nvim
 
-alias :d='git add . && git commit -m "commit"'
+alias :d='git add . && git commit -m "commit" && git push'
