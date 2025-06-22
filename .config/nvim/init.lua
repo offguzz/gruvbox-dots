@@ -138,10 +138,11 @@ function FzfLike()
     -- 4. Abrir automaticamente se só tiver um arquivo
     if count == 1 then
       vim.cmd("edit " .. filtered[1])
-    end
-
+    else
     -- 5. Mostrar quickfix list
     vim.cmd("copen")
+    end
+
   end)
 end
 vim.keymap.set("n", "<space><space>", FzfLike, { desc = "Fuzzy Find (Quickfix)" })
