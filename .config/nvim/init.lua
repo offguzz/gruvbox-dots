@@ -11,7 +11,9 @@ vim.cmd([[
 nmap <C-c> <Esc>
 vmap <C-c> <Esc>
 nmap <space>w <C-w>
-nmap <space>g :!git add . && git commit -m "commit" && git push<CR>
+nmap <space>gcd :!git add ~/gruvbox-dots/ && git commit -m "commit" && git push<CR>
+nmap <space>rr :so ~/.config/nvim/init.lua<Cr>
+nmap <space>fc :e ~/.config/nvim/init.lua<Cr>
 nmap <space><Cr> :Ex<Cr> 
 nmap <space>, :ls<Cr>:b! 
 nmap <space>1 `1
