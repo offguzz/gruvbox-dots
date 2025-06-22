@@ -8,7 +8,7 @@ set $alt Mod1
 
 set $terminal kitty
 set $browser firefox
-set $kitty  kitty --title "run-fzf" -e 
+set $fzf-term  kitty --title "run-fzf" -e 
 
 # # Minimal Theme
 # set $fg #ffffff
@@ -64,7 +64,7 @@ font pango:Jetbrains Mono Nerd Font 8
 # Autostart
 exec --no-startup-id dex --autostart --environment i3
 exec --no-startup-id  xrandr --output HDMI-1-0 --mode 1920x1080 --left-of eDP-1
-exec --no-startup-id  nitrogen --restore
+exec --no-startup-id  feh --bg-scale ~/wallpapergruvbox.jpg
 
 # Audio
 bindsym XF86AudioRaiseVolume exec --no-startup-id pactl set-sink-volume @DEFAULT_SINK@ +10% && $refresh_i3status
@@ -79,40 +79,26 @@ bindsym XF86MonBrightnessUp exec --no-startup-id brightnessctl set +10%
 bindsym XF86MonBrightnessDown exec --no-startup-id brightnessctl set 10%-
 
 # Use Mouse+$super to drag floating windows to their wanted position
-
 floating_modifier $super
 
-# run a terminal
 bindsym $super+Return exec $terminal
-
 bindsym $super+w exec $browser
 
 # kill focused window
 bindsym $super+q kill
 
 # run a program launcher
-bindsym $super+slash exec --no-startup-id $kitty ~/.config/i3/scripts/fzf-run.sh
-
+bindsym $super+slash exec --no-startup-id $fzf-term ~/.config/i3/scripts/fzf-run.sh
 # run network script
-bindsym $super+n exec --no-startup-id  $kitty ~/.config/i3/scripts/fzf-network.py
-
+bindsym $super+n exec --no-startup-id  $fzf-term ~/.config/i3/scripts/fzf-network.py
 # run bluetooth script
-bindsym $super+b exec --no-startup-id  $kitty ~/.config/i3/scripts/fzf-bluetooth.sh
+bindsym $super+b exec --no-startup-id  $fzf-term ~/.config/i3/scripts/fzf-bluetooth.sh
 # run output script
-bindsym $super+v exec --no-startup-id  $kitty ~/.config/i3/scripts/fzf-sound.sh
+bindsym $super+v exec --no-startup-id  $fzf-term ~/.config/i3/scripts/fzf-sound.sh
 # run powerscript
-bindsym $super+x exec --no-startup-id  $kitty ~/.config/i3/scripts/fzf-power.sh
+bindsym $super+x exec --no-startup-id  $fzf-term ~/.config/i3/scripts/fzf-power.sh
 # run rofi monitors script
-bindsym $super+Shift+m exec --no-startup-id  $kitty ~/.config/i3/scripts/fzf-xrandr-monitor.sh
-
-
-# alacritty floating
-
-for_window [class="alacritty-float|kitty-float|Music"] floating enable
-
-bindsym $super+r exec --no-startup-id  $scripts/combi.sh
-
-
+bindsym $super+Shift+m exec --no-startup-id  $fzf-term ~/.config/i3/scripts/fzf-xrandr-monitor.sh
 
 # change focus
 bindsym $super+h focus left
@@ -179,41 +165,3 @@ bindsym $super+Shift+r restart
 bindsym $super+Shift+q exec i3-msg exit
 
 for_window [title="^run-fzf"] floating enable, resize set 800 400, move position center
-
-# bar {
-#   status_command i3status -c ~/.config/i3/i3status/status
-#     position top
-#     font pango:Jetbrains Mono Nerd Font 8
-#     tray_output none
-#     colors {
-#       background #31302E
-#         statusline $fg
-#         separator $bg
-# #       element            border  bg    fg
-#         focused_workspace  $blue   $blue $bg
-#         active_workspace   $bg     $bg   $fg
-#         inactive_workspace $bg     $bg   $fg
-#         urgent_workspace   $red    $red  $bg
-#         binding_mode       $bg     $bg   $fg
-#     }
-# }
-
-# Sway Config
-
-# Background 
-# output HDMI-A-1 mode 1920x1080 pos 0 0
-# output eDP-1 mode 1920x1080 pos 1920 0
-#
-# exec --no-startup-id swaybg -i ~/Imagens/wallpapergruvbox.jpg
-#
-# # Touchpad config
-# input "type:touchpad" {
-#     tap enabled
-#     natural_scroll enabled
-# }
-#
-# input "type:keyboard" {
-#     xkb_layout us,br
-#     xkb_variant intl,
-#     xkb_options grp:win_space_toggle
-# }
