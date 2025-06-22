@@ -37,8 +37,6 @@ nmap [q :cprev<Cr>
 nmap ]q :cnext<Cr>
 nmap [Q :cfirst<Cr>
 nmap ]Q :clast<Cr>
-nmap <space>q :copen<Cr>
-nmap <space>Q :cclose<Cr>
 vmap <S-k> :m '<-2<CR>gv=gv
 vmap <S-j> :m '>+1<CR>gv=gv
 nmap <space>s/ :%s/\<<C-r><C-w>\>/<C-r><C-w>/gI<Left><Left><Left>
@@ -137,40 +135,43 @@ function FzfLike()
       items = qf_entries,
     })
 
-
     -- 4. Abrir automaticamente se só tiver um arquivo
     if count == 1 then
       vim.cmd("edit " .. filtered[1])
-      return
     end
 
-    -- 5. Mostrar opções resumidas na notificação
-    local max = 10
-    local output = {}
-    for i = 1, math.min(count, max) do
-      table.insert(output, string.format("%d. %s", i, filtered[i]))
-    end
-    if count > max then
-      table.insert(output, string.format("... and more %d files", count - max))
-    end
-    vim.notify(table.concat(output, "\n"), vim.log.levels.INFO)
-
-    -- 6. Escolher número do arquivo para abrir
-    vim.defer_fn(function()
-      vim.ui.input({ prompt = "Open (1-" .. math.min(count, max) .. "): " }, function(choice)
-        local index = tonumber(choice)
-        if index and filtered[index] then
-          vim.cmd("edit " .. filtered[index])
-        else
-          vim.notify("Invalid number.", vim.log.levels.WARN)
-        end
-      end)
-    end, 100)
+    -- 5. Mostrar quickfix list
+    vim.cmd("copen")
   end)
+end
+vim.keymap.set("n", "<space><space>", FzfLike, { desc = "Fuzzy Find (Quickfix)" })
 
-    -- -- Abrir quickfix automaticamente (opcional)
-    -- vim.cmd("copen")
+
+function ToggleQuickfix()
+  local current_win = vim.api.nvim_get_current_win()
+  local quickfix_win = nil
+
+  -- Verifica todas as janelas abertas
+  for _, win in ipairs(vim.fn.getwininfo()) do
+    if win.quickfix == 1 then
+      quickfix_win = win.winid
+      break
+    end
+  end
+
+  if quickfix_win then
+    if current_win == quickfix_win then
+      -- Se já está na janela do quickfix, fecha
+      vim.cmd("cclose")
+    else
+      -- Se quickfix está aberto mas o foco está em outra janela, move o foco para o quickfix
+      vim.api.nvim_set_current_win(quickfix_win)
+    end
+  else
+    -- Quickfix não está aberto, então abre
+    vim.cmd("copen")
+  end
 end
 
--- Atalho para usar a função
-vim.keymap.set("n", "<space><space>", FzfLike, { desc = "Fuzzy Find (Quickfix)" })
+-- Mapeamento para <space>q
+vim.keymap.set("n", "<space>q", ToggleQuickfix, { desc = "Toggle & Focus Quickfix" })
