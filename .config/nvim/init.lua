@@ -150,5 +150,3 @@ function FzfLike()
   end)
 end
 vim.keymap.set("n", "<space><space>", FzfLike, { desc = "Fuzzy Find (Quickfix)" })
-
-
