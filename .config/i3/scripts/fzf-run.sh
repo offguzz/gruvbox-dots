@@ -1,19 +1,9 @@
 #!/bin/bash
 
-# Garante que o script falhe em caso de erro
-set -e
+# CREDITS: https://erfur.dev/blog/fzf_as_dmenu
 
-# Gera uma lista de programas únicos disponíveis no PATH
-apps=$(IFS=:; for dir in $PATH; do
-    [ -d "$dir" ] && ls "$dir"
-done | sort -u)
+# --print-query is used to run a custom command when none of the list is
+# selected.
+OPTS='--info=inline --print-query --bind=ctrl-space:print-query,tab:replace-query'
 
-# Usa fzf para selecionar o programa
-selection=$(echo "$apps" | fzf --prompt="Launch: " --height=40% --reverse)
-
-# Se nada for selecionado, sai silenciosamente
-[ -z "$selection" ] && exit 0
-
-# Executa o programa selecionado como processo em segundo plano, para aplicações gráficas
-# Redireciona stdout/stderr para não poluir a saída
-nohup "$selection" >/dev/null 2>&1 &
+exec i3-msg -q "exec --no-startup-id $(compgen -c | fzf $OPTS | tail -1)"
