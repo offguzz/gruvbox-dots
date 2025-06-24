@@ -133,5 +133,3 @@ function! Find()
     endif
 endfunction
 noremap <silent> <space><space> :call Find()<CR>
-
-
