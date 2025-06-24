@@ -132,4 +132,6 @@ function! Find()
         copen
     endif
 endfunction
-nnoremap <silent> <space><space> :call Find()<CR>
+noremap <silent> <space><space> :call Find()<CR>
+
+
