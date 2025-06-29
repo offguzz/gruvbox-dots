@@ -9,8 +9,6 @@ colorscheme retrobox
 nmap <C-c> <Esc>
 vmap <C-c> <Esc>
 nmap <space>w <C-w>
-nmap U <C-u>
-nmap D <C-d>
 nmap <space>gc :!git add ~/gruvbox-dots/ && git commit -m "commit" && git push<CR>
 nmap <space>rr :so ~/.config/nvim/init.vim<Cr>
 nmap <space>fc :e ~/.config/nvim/init.vim<Cr>
@@ -76,8 +74,6 @@ imap <M-char-125> <C-o>}
 execute "set <M-char-123>=\e{"
 imap <M-char-123> <C-o>{
 imap <C-/> <C-o>u
-nmap <leader>/ :grep -r --exclude-dir=.git --exclude-dir=node_modules  .<Left><Left>
-nmap <leader>? :grep
 
 function! Find()
     let files = []
