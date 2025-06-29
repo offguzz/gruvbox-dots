@@ -9,7 +9,7 @@ colorscheme retrobox
 nmap <C-c> <Esc>
 vmap <C-c> <Esc>
 nmap <space>w <C-w>
-nmap <space>gp :!git add ~/gruvbox-dots/ && git commit -m "commit" && git push<CR>
+nmap <space>gc :!git add ~/gruvbox-dots/ && git commit -m "commit" && git push<CR>
 nmap <space>rr :so ~/.config/nvim/init.vim<Cr>
 nmap <space>fc :e ~/.config/nvim/init.vim<Cr>
 nmap <space><Cr> :Ex<Cr> 
