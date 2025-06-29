@@ -1,5 +1,14 @@
 (defcfg
+  movemouse-smooth-diagonals yes
   process-unmapped-keys yes
+)
+
+(deflocalkeys-linux
+mctl 89
+)
+
+(deflocalkeys-win
+mctl 91
 )
 
 (defalias
@@ -10,24 +19,43 @@
 grv  1    2    3    4    5    6    7    8    9    0    -    =    bspc
 tab  q    w    e    r    t    y    u    i    o    p    [    ]    \
 caps a    s    d    f    g    h    j    k    l    ;    '    ret
-lsft z    x    c    v    b    n    m    ,    .    /    rsft 
-lctl lmet lalt           spc            ralt  menu rctl 
+lsft z    x    c    v    b    n    m    ,    .    /    rsft up
+lctl lmet lalt           spc            ralt  menu mctl 
 )
 
 (deflayer base
 grv  1    2    3    4    5    6    7    8    9    0    -    =    bspc
-tab  q    w    e    r    t    y    u    i    o    p    [    ]    \
+caps q    w    e    r    t    y    u    i    o    p    [    ]    \
 lctl a    s    d    f    g    h    j    k    l    ;    '    ret
-lsft z    x    c    v    b    n    m    ,    .    /    rsft 
-XX   lmet lalt           spc            ralt  @hhkb XX
+lsft z    x    c    v    b    n    m    ,    .    /    rsft @hhkb
+lctl lmet lalt           spc            ralt  menu rctl
 )
 
-
-(deflayer hhkb-layer
-grv  f1   f2   f3   f4   f5   f6   f7   f8   f9   f10  f11  f12   bspc
-tab  home    up    end    pgup    t    y    u    i    o    p    up   ins  del
-lctl lft    down    rght    pgdn    g    h    j    home pgup lft    rght    ret
-lsft z    ins    del    XX    b    n    m    end  pgdn down    rsft 
-XX  lmet lalt           spc            ralt  menu XX
+(deflayermap hhkb-layer
+lctrl lctrl
+tab caps
+1 f1
+2 f1
+3 f2
+4 f3
+5 f4
+6 f5
+7 f6
+8 f7
+9 f8
+0 f9
+- f10
+= f11
+k home
+, end
+l pgup
+. pgdn
+[ up
+; left
+' rght
+/ down
+] del 
+\ ins
+___ _
 )
 
