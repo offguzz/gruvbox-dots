@@ -78,7 +78,6 @@ nmap <leader>/ :grep -r --exclude-dir=.git --exclude-dir=node_modules  .<Left><L
 nmap <leader>? :grep
 
 function! Find()
-    " 1. Coletar arquivos
     let files = []
     let find_output = systemlist('find . -type f -not -path ''*/.git/*''')
     if v:shell_error != 0
@@ -90,7 +89,6 @@ function! Find()
 
     let files = find_output
 
-    " 2. Entrada para filtro
     let input = input('Find for > ')
     if empty(input)
         return
@@ -113,7 +111,6 @@ function! Find()
         return
     endif
 
-    " 3. Adicionar ao quickfix list
     let qf_entries = []
     for file in filtered
         call add(qf_entries, {'filename': file, 'lnum': 1, 'col': 1, 'text': file})
@@ -124,11 +121,9 @@ function! Find()
         \ 'items': qf_entries
         \ })
 
-    " 4. Abrir automaticamente se só tiver um arquivo
     if match_count == 1
         execute 'edit ' . fnameescape(filtered[0])
     else
-        " 5. Mostrar quickfix list
         copen
     endif
 endfunction
