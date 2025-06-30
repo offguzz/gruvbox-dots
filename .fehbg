@@ -1,2 +1,2 @@
 #!/bin/sh
-feh --no-fehbg --bg-scale '/home/noroot/wallpapergruvbox.jpg' 
+feh --no-fehbg --bg-scale '/home/noroot/.config/i3/wallpapergruvbox.jpg' 
