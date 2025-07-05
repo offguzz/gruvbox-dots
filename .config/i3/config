@@ -66,8 +66,10 @@ bindsym $super+q kill
 
 # run a program launcher
 bindsym $super+slash exec --no-startup-id $fzf-term ~/.config/i3/scripts/fzf-run.sh
-# run network script
-bindsym $super+n exec --no-startup-id  $fzf-term ~/.config/i3/scripts/fzf-network.py
+# run wifi script
+bindsym $super+n exec --no-startup-id  $fzf-term ~/.config/i3/scripts/fzf-wifi.sh
+# run nmtui
+bindsym $super+shift+n exec --no-startup-id  $fzf-term nmtui
 # run bluetooth script
 bindsym $super+b exec --no-startup-id  $fzf-term ~/.config/i3/scripts/fzf-bluetooth.sh
 # run output script

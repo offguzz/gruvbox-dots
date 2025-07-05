@@ -19,6 +19,7 @@ set foldmethod=indent
 set undofile
 set undolevels=10000
 set clipboard+=unnamed,unnamedplus
+set nohlsearch
 
 " Leader Key
 let mapleader="\ "  
