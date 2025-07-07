@@ -1,5 +1,4 @@
 "My Simple config
-
 " Options 
 set nu
 set rnu
@@ -26,7 +25,9 @@ let mapleader="\ "
 
 " Netrw Config
 let g:netrw_banner = 0
-let g:netrw_liststyle = 0
+
+" Windows
+nmap <leader>w <C-w>
 
 " Harpoon
 nmap <leader>1 `1
@@ -40,29 +41,12 @@ nmap <leader>8 `8
 nmap <leader>9 `9
 nmap <leader>0 `0
 
-".config/nvim/init.vim
-nmap <leader>rr :so ~/.config/nvim/init.vim<Cr>
-nmap <leader>fc :e ~/.config/nvim/init.vim<Cr>
-
-" Grep
-nmap <leader>sg :grep -r --exclude-dir=.git --exclude-dir=node_modules  .<Left><Left>
-nmap <leader>sG :grep
-
-"Buffers 
+" Buffers 
 nmap [b :bp!<Cr>
 nmap ]b :bn!<Cr>
-nmap <leader>sb :ls<Cr> :b! 
 
 " Vim File Explorer
 nmap <leader><Cr> :Ex<Cr>
-
-" Text Managment
-vmap <S-k> :m '<-2<CR>gv=gv
-vmap <S-j> :m '>+1<CR>gv=gv
-
-" Word Substitution
-nmap <leader>s/ :%s/\<<C-r><C-w>\>/<C-r><C-w>/gI<Left><Left><Left>
-nmap <leader>s. :s/\<<C-r><C-w>\>/<C-r><C-w>/gI<Left><Left><Left>
 
 " Insert Mode - Emacs Readline
 imap <C-a> <Home>
@@ -74,6 +58,7 @@ imap <C-e> <End>
 imap <C-d> <Del>
 imap <C-/> <C-o>u
 imap <C-x><C-s> <C-o>:w<Cr>
+imap <C-x><C-c> <Esc>:wq<Cr>
 
 " Command Mode - Emacs Readline
 cnoremap <C-h> <BS>
@@ -101,16 +86,30 @@ Plug 'junegunn/fzf.vim'
 Plug 'tpope/vim-fugitive'
 call plug#end()
 
-" Fzf Find Word
-nmap <leader>sw :RG <C-r><C-w><Cr>
-" Fzf Grep 
-nmap <leader>/ :RG<Cr>
+" FZF Settings
+let g:fzf_vim = {} 
+let g:fzf_colors =
+  \ { 'fg':      ['fg', 'Normal'],
+  \ 'bg':      ['bg', 'Normal'],
+  \ 'query':   ['fg', 'Normal'],
+  \ 'hl':      ['fg', 'Comment'],
+  \ 'fg+':     ['fg', 'CursorLine', 'CursorColumn', 'Normal'],
+  \ 'bg+':     ['bg', 'CursorLine', 'CursorColumn'],
+  \ 'hl+':     ['fg', 'Statement'],
+  \ 'info':    ['fg', 'PreProc'],
+  \ 'border':  ['fg', 'Comment'],
+  \ 'prompt':  ['fg', 'Conditional'],
+  \ 'pointer': ['fg', 'Exception'],
+  \ 'marker':  ['fg', 'Keyword'],
+  \ 'spinner': ['fg', 'Label'],
+  \ 'header':  ['fg', 'Comment'] } 
+
 " Ffz Find Files
 nmap <leader><space> :Files<Cr>
+" Fzf Grep 
+nmap <leader>/ :RG<Cr>
 " Fzf Buffers
 nmap <leader>, :Buffers<Cr>
-" Fzf Colors
-nmap <leader>uC :Colors<Cr>
 
 " Git 
 nmap <leader>G :Git<Cr>
