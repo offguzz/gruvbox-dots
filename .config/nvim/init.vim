@@ -58,7 +58,6 @@ imap <C-e> <End>
 imap <C-d> <Del>
 imap <C-/> <C-o>u
 imap <C-x><C-s> <C-o>:w<Cr>
-imap <C-x><C-c> <Esc>:wq<Cr>
 
 " Command Mode - Emacs Readline
 cnoremap <C-h> <BS>
