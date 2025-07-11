@@ -1,4 +1,5 @@
 "My Simple config
+"
 " Options 
 set nu
 set rnu
@@ -27,56 +28,56 @@ let mapleader="\ "
 let g:netrw_banner = 0
 
 " Windows
-nmap <leader>w <C-w>
+nmap <silent> <leader>w <C-w>
 
 " Harpoon
-nmap <leader>1 `1
-nmap <leader>2 `2
-nmap <leader>3 `3
-nmap <leader>4 `4
-nmap <leader>5 `5
-nmap <leader>6 `6
-nmap <leader>7 `7
-nmap <leader>8 `8
-nmap <leader>9 `9
-nmap <leader>0 `0
+nmap <silent> <leader>1 `1
+nmap <silent> <leader>2 `2
+nmap <silent> <leader>3 `3
+nmap <silent> <leader>4 `4
+nmap <silent> <leader>5 `5
+nmap <silent> <leader>6 `6
+nmap <silent> <leader>7 `7
+nmap <silent> <leader>8 `8
+nmap <silent> <leader>9 `9
+nmap <silent> <leader>0 `0
 
 " Buffers 
-nmap [b :bp!<Cr>
-nmap ]b :bn!<Cr>
+nmap <silent> [b :bp!<Cr>
+nmap <silent> ]b :bn!<Cr>
 
 " Vim File Explorer
-nmap <leader><Cr> :Ex<Cr>
+nmap <silent> <leader><Cr> :Ex<Cr>
 
 " Insert Mode - Emacs Readline
-imap <C-a> <Home>
-imap <C-f> <Right>
-imap <C-p> <Up>
-imap <C-n> <Down>
-imap <C-b> <Left>
-imap <C-e> <End>
-imap <C-d> <Del>
-imap <C-/> <C-o>u
-imap <C-x><C-s> <C-o>:w<Cr>
+imap <silent> <C-a> <Home>
+imap <silent> <C-f> <Right>
+imap <silent> <C-p> <Up>
+imap <silent> <C-n> <Down>
+imap <silent> <C-b> <Left>
+imap <silent> <C-e> <End>
+imap <silent> <C-d> <Del>
+imap <silent> <C-/> <C-o>u
+imap <silent> <C-x><C-s> <C-o>:w<Cr>
 
 " Command Mode - Emacs Readline
-cnoremap <C-h> <BS>
-cnoremap <C-j> <Down>
-cnoremap <C-k> <Up>
-cnoremap <C-b> <Left>
-cnoremap <C-f> <Right>
-cnoremap <C-a> <Home>
-cnoremap <C-e> <End>
-cnoremap <C-d> <Delete>
-cnoremap <C-o> <C-f>
+cnoremap <silent> <C-h> <BS>
+cnoremap <silent> <C-j> <Down>
+cnoremap <silent> <C-k> <Up>
+cnoremap <silent> <C-b> <Left>
+cnoremap <silent> <C-f> <Right>
+cnoremap <silent> <C-a> <Home>
+cnoremap <silent> <C-e> <End>
+cnoremap <silent> <C-d> <Delete>
+cnoremap <silent> <C-o> <C-f>
 
 " Quick Fix
-nmap ]q :cnext<Cr>
-nmap ]Q :clast<Cr>
-nmap [q :cprev<Cr>
-nmap [Q :cfirst<Cr>
-nmap <leader>q :copen<Cr>
-nmap <leader>Q :cclose<Cr>
+nmap <silent> ]q :cnext<Cr>
+nmap <silent> ]Q :clast<Cr>
+nmap <silent> [q :cprev<Cr>
+nmap <silent> [Q :cfirst<Cr>
+nmap <silent> <leader>q :copen<Cr>
+nmap <silent> <leader>Q :cclose<Cr>
 
 call plug#begin()
 " List your plugins here
@@ -104,14 +105,14 @@ let g:fzf_colors =
   \ 'header':  ['fg', 'Comment'] } 
 
 " Ffz Find Files
-nmap <leader><space> :Files<Cr>
+nmap <silent> <leader><space> :Files<Cr>
 " Fzf Grep 
-nmap <leader>/ :RG<Cr>
+nmap <silent> <leader>/ :RG<Cr>
 " Fzf Buffers
-nmap <leader>, :Buffers<Cr>
+nmap <silent> <leader>, :Buffers<Cr>
 
 " Git 
-nmap <leader>G :Git<Cr>
+nmap <silent> <leader>G :Git<Cr>:only<Cr>
 
 " Theme Settings
 set termguicolors
