@@ -1,6 +1,4 @@
 vim.cmd[[
-"My Simple config
-
 " Options 
 set nu rnu cursorline nowrap ignorecase smartcase tabstop=2 shiftwidth=2 expandtab wildoptions=pum showcmd noswapfile incsearch foldmethod=indent undofile undolevels=10000 clipboard+=unnamed,unnamedplus nohlsearch
 
@@ -102,3 +100,5 @@ set termguicolors
 set background=dark
 colorscheme gruvbox
 ]]
+
+vim.keymap.set("i", "<C-x><C-c>", "<Cmd>wq<Cr>")
