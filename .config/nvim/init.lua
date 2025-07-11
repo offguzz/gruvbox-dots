@@ -1,25 +1,8 @@
+vim.cmd[[
 "My Simple config
-"
+
 " Options 
-set nu
-set rnu
-set cursorline 
-set nowrap
-set ignorecase
-set smartcase
-set tabstop=2
-set shiftwidth=2
-set expandtab
-set wildoptions=pum
-set showcmd
-set nocompatible
-set noswapfile
-set incsearch
-set foldmethod=indent
-set undofile
-set undolevels=10000
-set clipboard+=unnamed,unnamedplus
-set nohlsearch
+set nu rnu cursorline nowrap ignorecase smartcase tabstop=2 shiftwidth=2 expandtab wildoptions=pum showcmd noswapfile incsearch foldmethod=indent undofile undolevels=10000 clipboard+=unnamed,unnamedplus nohlsearch
 
 " Leader Key
 let mapleader="\ "  
@@ -118,3 +101,4 @@ nmap <silent> <leader>G :Git<Cr>:only<Cr>
 set termguicolors
 set background=dark
 colorscheme gruvbox
+]]
