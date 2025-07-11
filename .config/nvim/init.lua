@@ -100,5 +100,3 @@ set termguicolors
 set background=dark
 colorscheme gruvbox
 ]]
-
-vim.keymap.set("i", "<C-x><C-c>", "<Cmd>wq<Cr>")
