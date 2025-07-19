@@ -40,82 +40,83 @@ let mapleader="\ "
 
 let g:netrw_banner = 0
 
-nmap <leader>1 `1
-nmap <leader>2 `2
-nmap <leader>3 `3
-nmap <leader>4 `4
-nmap <leader>5 `5
-nmap <leader>6 `6
-nmap <leader>7 `7
-nmap <leader>8 `8
-nmap <leader>9 `9
-nmap <leader>0 `0
+nmap <silent> <leader>1 `1
+nmap <silent> <leader>2 `2
+nmap <silent> <leader>3 `3
+nmap <silent> <leader>4 `4
+nmap <silent> <leader>5 `5
+nmap <silent> <leader>6 `6
+nmap <silent> <leader>7 `7
+nmap <silent> <leader>8 `8
+nmap <silent> <leader>9 `9
+nmap <silent> <leader>0 `0
 
-nmap <leader>rr :so ~/.vimrc<Cr>
-nmap <leader>fc :e ~/.vimrc<Cr>
+nmap <silent> <leader>rr :so ~/.vimrc<Cr>
+nmap <silent> <leader>fc :e ~/.vimrc<Cr>
 
-nmap <C-h> <C-w>h
-nmap <C-j> <C-w>j
-nmap <C-k> <C-w>k
-nmap <C-l> <C-w>l
-nmap <leader>w <C-w>
+nmap <silent> <C-h> <C-w>h
+nmap <silent> <C-j> <C-w>j
+nmap <silent> <C-k> <C-w>k
+nmap <silent> <C-l> <C-w>l
+nmap <silent> <leader>w <C-w>
 
-nmap <leader>sg :grep -r --exclude-dir=.git --exclude-dir=node_modules  .<Left><Left>
+nmap <silent> <leader>sg :grep -r --exclude-dir=.git --exclude-dir=node_modules  .<Left><Left>
 
-nmap [b :bp!<Cr>
-nmap ]b :bn!<Cr>
-nmap <leader>sb :b! 
+nmap <silent> [b :bp!<Cr>
+nmap <silent> ]b :bn!<Cr>
+nmap <silent> <leader>sb :ls<Cr>:b! 
+nmap <silent> <leader>bb :b #<cr>
 
-nmap <leader><Cr> :Ex<Cr>
+nmap <silent> <leader><Cr> :Ex<Cr>
 
-vmap <S-k> :m '<-2<CR>gv=gv
-vmap <S-j> :m '>+1<CR>gv=gv
+vmap <silent> <S-k> :m '<-2<CR>gv=gv
+vmap <silent> <S-j> :m '>+1<CR>gv=gv
 
-nmap <leader>s/ :%s/\<<C-r><C-w>\>/<C-r><C-w>/gI<Left><Left><Left>
-nmap <leader>s. :s/\<<C-r><C-w>\>/<C-r><C-w>/gI<Left><Left><Left>
+nmap <silent> <leader>s/ :%s/\<<C-r><C-w>\>/<C-r><C-w>/gI<Left><Left><Left>
+nmap <silent> <leader>s. :s/\<<C-r><C-w>\>/<C-r><C-w>/gI<Left><Left><Left>
 
-nmap <C-d> <C-d>zz
-nmap <C-u> <C-u>zz
-nmap j gj
-nmap k gk
-vmap j gj
-vmap k gk
+nmap <silent> <C-d> <C-d>zz
+nmap <silent> <C-u> <C-u>zz
+nmap <silent> j gj
+nmap <silent> k gk
+vmap <silent> j gj
+vmap <silent> k gk
 
-nmap n nzz 
-nmap N Nzz 
+nmap <silent> n nzz 
+nmap <silent> N Nzz 
 
-imap <C-a> <Home>
-imap <C-f> <Right>
-imap <C-p> <Up>
-imap <C-n> <Down>
-imap <C-b> <Left>
-imap <C-e> <End>
-imap <C-d> <Del>
+imap <silent> <C-a> <Home>
+imap <silent> <C-f> <Right>
+imap <silent> <C-p> <Up>
+imap <silent> <C-n> <Down>
+imap <silent> <C-b> <Left>
+imap <silent> <C-e> <End>
+imap <silent> <C-d> <Del>
 execute "set <M-char-102>=\ef"
-imap <M-char-102> <C-o>w
+imap <silent> <M-char-102> <C-o>w
 execute "set <M-char-98>=\eb"
-imap <M-char-98> <C-o>b
+imap <silent> <M-char-98> <C-o>b
 execute "set <M-char-100>=\ed"
-imap <M-char-100> <C-o>dw
-imap <C-/> <C-o>u
-imap <C-x><C-s> <C-o>:w<Cr>
+imap <silent> <M-char-100> <C-o>dw
+imap <silent> <C-/> <C-o>u
+imap <silent> <C-x><C-s> <C-o>:w<Cr>
 
-cnoremap <C-h> <BS>
-cnoremap <C-j> <Down>
-cnoremap <C-k> <Up>
-cnoremap <C-b> <Left>
-cnoremap <C-f> <Right>
-cnoremap <C-a> <Home>
-cnoremap <C-e> <End>
-cnoremap <C-d> <Delete>
-cnoremap <C-o> <C-f>
+cnoremap <silent> <C-h> <BS>
+cnoremap <silent> <C-j> <Down>
+cnoremap <silent> <C-k> <Up>
+cnoremap <silent> <C-b> <Left>
+cnoremap <silent> <C-f> <Right>
+cnoremap <silent> <C-a> <Home>
+cnoremap <silent> <C-e> <End>
+cnoremap <silent> <C-d> <Delete>
+cnoremap <silent> <C-o> <C-f>
 
-nmap ]q :cnext<Cr>
-nmap ]Q :clast<Cr>
-nmap [q :cprev<Cr>
-nmap [Q :cfirst<Cr>
-nmap <leader>q :copen<Cr>
-nmap <leader>Q :cclose<Cr>
+nmap <silent> ]q :cnext<Cr>
+nmap <silent> ]Q :clast<Cr>
+nmap <silent> [q :cprev<Cr>
+nmap <silent> [Q :cfirst<Cr>
+nmap <silent> <leader>q :copen<Cr>
+nmap <silent> <leader>Q :cclose<Cr>
 
 let data_dir = has('nvim') ? stdpath('data') . '/site' : '~/.vim'
 if empty(glob(data_dir . '/autoload/plug.vim'))
@@ -156,20 +157,19 @@ let g:fzf_colors =
   \ 'spinner': ['fg', 'Label'],
   \ 'header':  ['fg', 'Comment'] } 
 
-let g:fzf_vim.buffers_jump = 1
 let g:fzf_vim.preview_window = ['right,50%,<50(up,60%)', 'ctrl-o']
 let g:fzf_vim.preview_window = ['up,60%', 'ctrl-o']
-let g:fzf_vim.colors_options =      ['--style', 'minimal', '--no-preview']
+let g:fzf_vim.colors_options = ['--style', 'minimal', '--no-preview']
 let g:fzf_vim.command_prefix = 'Fzf'
 
-nmap <silent> <leader><space> :FzfFiles<Cr>
-nmap <silent> <leader>sw :FzfRG <C-r><C-w><Cr>
-nmap <silent> <leader>/ :FzfRG<Cr>
-nmap <silent> <leader>, :FzfBuffers<Cr>
-nmap <silent> <leader>uC :FzfColors<Cr>
+nmap <silent> <silent> <leader><space> :FzfFiles<Cr>
+nmap <silent> <silent> <leader>sw :FzfRG <C-r><C-w><Cr>
+nmap <silent> <silent> <leader>/ :FzfRG<Cr>
+nmap <silent> <silent> <leader>, :FzfBuffers<Cr>
+nmap <silent> <silent> <leader>uC :FzfColors<Cr>
 
-nmap <silent> <leader>G :Git<Cr>:only<Cr>
-nmap <silent> <leader>gg :!lazygit<Cr>
-nmap <leader>gp :!git pull<Cr>
-nmap <leader>gP :!git push<Cr>
-nmap <silent> <leader>gl :Git log<Cr>
+nmap <silent> <silent> <leader>G :Git<Cr>:only<Cr>
+nmap <silent> <silent> <leader>gg :!lazygit<Cr>
+nmap <silent> <leader>gp :!git pull<Cr>
+nmap <silent> <leader>gP :!git push<Cr>
+nmap <silent> <silent> <leader>gl :Git log<Cr>
