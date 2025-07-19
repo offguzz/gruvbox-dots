@@ -8,8 +8,6 @@ set tabstop=2
 set shiftwidth=2
 set expandtab
 set wildoptions=pum
-set showcmd
-set showcmdloc=statusline
 set nocompatible
 set noswapfile
 set incsearch
