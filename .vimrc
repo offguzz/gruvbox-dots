@@ -162,14 +162,8 @@ let g:fzf_vim.preview_window = ['up,60%', 'ctrl-o']
 let g:fzf_vim.colors_options = ['--style', 'minimal', '--no-preview']
 let g:fzf_vim.command_prefix = 'Fzf'
 
-nmap <silent> <silent> <leader><space> :FzfFiles<Cr>
-nmap <silent> <silent> <leader>sw :FzfRG <C-r><C-w><Cr>
-nmap <silent> <silent> <leader>/ :FzfRG<Cr>
-nmap <silent> <silent> <leader>, :FzfBuffers<Cr>
-nmap <silent> <silent> <leader>uC :FzfColors<Cr>
-
-nmap <silent> <silent> <leader>G :Git<Cr>:only<Cr>
-nmap <silent> <silent> <leader>gg :!lazygit<Cr>
-nmap <silent> <leader>gp :!git pull<Cr>
-nmap <silent> <leader>gP :!git push<Cr>
-nmap <silent> <silent> <leader>gl :Git log<Cr>
+nmap <silent> <leader><space> :FzfFiles<Cr>
+nmap <silent> <leader>/ :FzfRG<Cr>
+nmap <silent> <leader>, :FzfBuffers<Cr>
+nmap <silent> <leader>uC :FzfColors<Cr>
+nmap <silent> <leader>G :Git<Cr>:only<Cr>
